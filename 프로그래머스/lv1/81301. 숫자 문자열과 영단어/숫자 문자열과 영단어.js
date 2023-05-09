@@ -1,20 +1,18 @@
 function solution(s) {
-    numList = [
-        'zero',
-        'one',
-        'two',
-        'three',
-        'four',
-        'five',
-        'six',
-        'seven',
-        'eight',
-        'nine',
-    ];
-
-    for (let index = 0; index < numList.length; index++) {
-        s = s.replaceAll(numList[index], index);
-    }
-
-    return parseInt(s);
+  const list = [
+    /zero/g,
+    /one/g,
+    /two/g,
+    /three/g,
+    /four/g,
+    /five/g,
+    /six/g,
+    /seven/g,
+    /eight/g,
+    /nine/g,
+  ];
+  for (i = 0; i < list.length; i++) {
+    s = s.replace(list[i], i);
+  }
+  return parseInt(s);
 }
