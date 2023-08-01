@@ -1,7 +1,6 @@
 function solution(clothes) {
   const clothesObj = new Object();
-  const numbers = [];
-
+  let result = 1;
   clothes.forEach((element) => {
     const clothesPart = element[1];
 
@@ -13,8 +12,8 @@ function solution(clothes) {
   });
 
   for (const clothe in clothesObj) {
-    numbers.push(clothesObj[clothe]);
+    result *= clothesObj[clothe];
   }
 
-  return numbers.reduce((total, val) => total * val) - 1;
+  return result - 1;
 }
