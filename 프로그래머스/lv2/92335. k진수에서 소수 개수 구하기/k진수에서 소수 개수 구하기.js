@@ -3,9 +3,6 @@ function solution(n, k) {
   const binary = n.toString(k);
 
   const discriminateDemical = (binary) => {
-    if (binary == 2) {
-      return true;
-    }
     if (binary == 1) {
       return false;
     }
