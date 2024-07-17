@@ -13,9 +13,9 @@ class Solution {
     public void dfs(int depth, int k, int[][] dungeons) {
         for (int i = 0; i < dungeons.length; i++) {
             if (!visited[i] && dungeons[i][0] <= k) {
-                visited[i] = true; // 방문 처리
-                dfs(depth + 1, k - dungeons[i][1], dungeons); // 재귀 호출
-                visited[i] = false; // 방문 초기화
+                visited[i] = true;
+                dfs(depth + 1, k - dungeons[i][1], dungeons); 
+                visited[i] = false; 
             }
         }
         
