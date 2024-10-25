@@ -11,8 +11,8 @@ class Solution {
             char firstWord = words[i].charAt(0);
 
             if (lastWord != firstWord || usedWords.contains(words[i])) {
-                answer[0] = (i + n) % n + 1;
-                answer[1] = (int) i / n + 1;
+                answer[0] = i % n + 1;
+                answer[1] = i / n + 1;
 
                 return answer;
             }
