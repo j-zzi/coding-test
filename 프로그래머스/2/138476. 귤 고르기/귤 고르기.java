@@ -1,25 +1,28 @@
 import java.util.*;
 
 class Solution {
-    public int solution(int k, int[] tangerine) {
-        int sum = 0; // 고를 귤의 개수
-        int cnt = 0; // 최솟값 카운트
-        
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for(int num : tangerine) {
-            map.put(num, map.getOrDefault(num, 0) + 1);
+    public int solution(int k,int[] tangerine) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int sum = 0;
+        int cnt = 0;
+
+        for (int i : tangerine) {
+            map.put(i, map.getOrDefault(i, 0) + 1);
         }
-        ArrayList<Integer> valueList = new ArrayList<>(map.values());
-        Collections.sort(valueList, Collections.reverseOrder());
-        for (int v : valueList) {
-            if (sum + v >= k) {
+
+        List<Integer> list = new ArrayList<>(map.values());
+        list.sort(Comparator.reverseOrder());
+
+        for (Integer i : list) {
+            if (sum + i >= k) {
                 cnt++;
-                break;
-            } else {
-                sum += v;
-                cnt++;
+                return cnt;
             }
+
+            sum += i;
+            cnt++;
         }
+
         return cnt;
     }
 }
