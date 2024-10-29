@@ -2,49 +2,42 @@ import java.util.*;
 class Solution {
     public int solution(String s) {
         int answer = 0;
-                
+
         Queue<String> queue = new LinkedList<>();
-        
-        for(int i = 0; i < s.length(); i++){
-            String str = s.substring(i,i+1);
-            queue.add(str);
+
+        for (int i = 0; i < s.length(); i++) {
+            queue.add(String.valueOf(s.charAt(i)));
         }
-        
-        
-        for(int i = 0; i < s.length(); i++){
+
+        for (int i = 0; i < s.length(); i++) {
+            Stack<String> stack = new Stack<>();
+
             String firstStr = queue.poll();
             queue.add(firstStr);
-            
-            Stack<String> stack = new Stack<>();
-            
-            for(int j = 0; j < s.length(); j++){
+
+            for (int j = 0; j < s.length(); j++) {
                 String waitingStr = queue.poll();
                 queue.add(waitingStr);
-                
-                if(stack.isEmpty()){
+
+
+                if (stack.isEmpty()) {
                     stack.push(waitingStr);
-                } 
-                else if(waitingStr.equals(")") && stack.peek().equals("(")){
+                } else if (stack.peek().equals("[") && waitingStr.equals("]")) {
                     stack.pop();
-                }
-                else if(waitingStr.equals("]") && stack.peek().equals("[")){
+                } else if (stack.peek().equals("{") && waitingStr.equals("}")) {
                     stack.pop();
-                }
-                else if(waitingStr.equals("}") && stack.peek().equals("{")){
+                } else if (stack.peek().equals("(") && waitingStr.equals(")")) {
                     stack.pop();
-                }
-                else{
+                } else{
                     stack.push(waitingStr);
                 }
-                
             }
-            
-            if(stack.isEmpty()){
+
+            if (stack.isEmpty()) {
                 answer++;
             }
-            
         }
-        
+
         return answer;
     }
 }
