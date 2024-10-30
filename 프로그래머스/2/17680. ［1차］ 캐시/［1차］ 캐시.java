@@ -7,20 +7,21 @@ class Solution {
 
         for (String city : cities) {
             city = city.toLowerCase();
-            int idx = cache.indexOf(city);
+            int index = cache.indexOf(city);
 
-            if (idx >= 0) {
-                cache.remove(idx);
-                cache.add(city);
+            if (index >= 0) {
                 answer += 1;
-            } else {
+                cache.remove(index);
                 cache.add(city);
+            } else {
                 answer += 5;
+                cache.add(city);
             }
 
             if (cache.size() > cacheSize) {
                 cache.remove(0);
             }
+
         }
         return answer;
     }
