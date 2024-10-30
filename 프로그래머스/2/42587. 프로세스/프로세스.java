@@ -1,27 +1,26 @@
-import java.util.PriorityQueue;
-import java.util.Collections;
-
+import java.util.*;
 class Solution {
     public int solution(int[] priorities, int location) {
-        PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
         int answer = 0;
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Collections.reverseOrder());
 
-        for (int i : priorities) {
-            queue.offer(i);
+        for (int priority : priorities) {
+            priorityQueue.add(priority);
         }
 
-        while (!queue.isEmpty()) {
+        while (!priorityQueue.isEmpty()) {
             for (int i = 0; i < priorities.length; i++) {
-                if (queue.peek() == priorities[i]) {
-                    queue.poll();
+                if (priorityQueue.peek() == priorities[i]) {
+                    priorityQueue.poll();
                     answer++;
 
-                    if (location == i) {
+                    if (i == location) {
                         return answer;
                     }
                 }
             }
         }
+
 
         return answer;
     }
