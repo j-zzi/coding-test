@@ -1,0 +1,20 @@
+class Solution {
+    public int answer;
+
+    public int solution(int[] numbers, int target) {
+        dfs(0, 0, numbers, target);
+
+        return answer;
+    }
+
+    public void dfs(int sum, int n, int[] numbers, int target) {
+        if (n == numbers.length) {
+            if (sum == target) {
+                answer++;
+            }
+            return;
+        }
+        dfs(sum + numbers[n], n + 1, numbers, target);
+        dfs(sum - numbers[n], n + 1, numbers, target);
+    }
+}
