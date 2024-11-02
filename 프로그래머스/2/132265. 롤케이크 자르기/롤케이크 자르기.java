@@ -2,49 +2,31 @@ import java.util.*;
 
 class Solution {
     public int solution(int[] topping) {
-        int[] leftCumulativeSum = getLeftCumulativeSum(topping);
-        int[] rightCumulativeSum = getRightCumulativeSum(topping);
-        return getCount(leftCumulativeSum, rightCumulativeSum);
-    }
+        int answer = 0;
 
-    private int getCount(int[] leftCumulativeSum, int[] rightCumulativeSum) {
-        int count = 0;
-        for(int idx=0; idx<leftCumulativeSum.length-1; idx++) {
-            if(leftCumulativeSum[idx] == rightCumulativeSum[idx+1]) {
-                count++;
+        HashMap<Integer, Integer> leftMap = new HashMap<>();
+        HashMap<Integer, Integer> rightMap = new HashMap<>();
+
+        leftMap.put(topping[0], 1);
+
+        for (int i = 1; i < topping.length; i++) {
+            rightMap.put(topping[i], rightMap.getOrDefault(topping[i], 0) + 1);
+        }
+
+        for (int i = 1; i < topping.length - 1; i++) {
+            if (leftMap.size() == rightMap.size()) {
+                answer++;
+            }
+
+            leftMap.put(topping[i], leftMap.getOrDefault(topping[i], 0) + 1);
+
+            if (rightMap.get(topping[i]) == 1) {
+                rightMap.remove(topping[i]);
+            } else{
+                rightMap.put(topping[i], rightMap.get(topping[i]) - 1);
             }
         }
-        return count;
-    }
 
-    // 0~i idx까지의 조각의 종류 개수
-    private int[] getLeftCumulativeSum(int[] topping) {
-        int[] arr = new int[topping.length];
-        Set<Integer> alreadyIn = new HashSet<>();
-        for(int i=0, count=0; i<topping.length; i++) {
-            int num = topping[i];
-            if(!alreadyIn.contains(num)) {
-                alreadyIn.add(num);
-                count++;
-            }
-            arr[i] = count;
-        }
-        return arr;
+        return answer;
     }
-
-    //N-1 ~ i idx까지의 조각의 종류의 개수
-    private int[] getRightCumulativeSum(int[] topping) {
-        int[] arr = new int[topping.length];
-        Set<Integer> alreadyIn = new HashSet<>();
-        for(int i=topping.length-1, count=0; i>=0; i--) {
-            int num = topping[i];
-            if(!alreadyIn.contains(num)) {
-                alreadyIn.add(num);
-                count++;
-            }
-            arr[i] = count;
-        }
-        return arr;
-    }
-
 }
