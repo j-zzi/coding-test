@@ -1,10 +1,10 @@
 # [level 2] 괄호 변환 - 60058 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/60058) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/60058?language=javascript) 
 
 ### 성능 요약
 
-메모리: 83.8 MB, 시간: 0.48 ms
+메모리: 33.5 MB, 시간: 0.58 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 01월 06일 22:18:24
+2025년 01월 07일 19:18:49
 
 ### 문제 설명
 
