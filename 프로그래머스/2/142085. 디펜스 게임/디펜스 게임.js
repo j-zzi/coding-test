@@ -3,10 +3,6 @@ class MaxHeap {
     this.items = [];
   }
 
-  getItems() {
-    return this.items;
-  }
-
   swap(index1, index2) {
     [this.items[index1], this.items[index2]] = [
       this.items[index2],
@@ -38,14 +34,6 @@ class MaxHeap {
     return this.items[this.getRightChildIndex(index)];
   }
 
-  getPeek() {
-    return this.items[0];
-  }
-
-  getSize() {
-    return this.items.length;
-  }
-
   add(item) {
     this.items[this.items.length] = item;
 
@@ -67,7 +55,7 @@ class MaxHeap {
     let index = this.items.length - 1;
 
     while (this.getParent(index) && this.getParent(index) < this.items[index]) {
-      this.swap(index, this.getParentIndex(index));
+      this.swap(this.getParentIndex(index), index);
       index = this.getParentIndex(index);
     }
   }
@@ -97,10 +85,12 @@ class MaxHeap {
 
 function solution(n, k, enemy) {
   const maxHeap = new MaxHeap();
+
   let result = 0;
 
   for (let i = 0; i < enemy.length; i++) {
     maxHeap.add(enemy[i]);
+
     n -= enemy[i];
 
     if (n < 0) {
@@ -111,7 +101,6 @@ function solution(n, k, enemy) {
         k--;
       }
     }
-
     result++;
   }
 
